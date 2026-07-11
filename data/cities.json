@@ -1,0 +1,78 @@
+{
+  "_meta": {
+    "note": "城市坐标为市中心近似值；tier 依据第七次全国人口普查城区常住人口，对应 GB 50014-2021 表4.1.3 的三档城镇分类。anchor 为该市有官方通报出处的历史极端小时/多小时雨强实测值，用于标定再分析数据的低估倍数。",
+    "tiers": {
+      "tier1": "超大城市和特大城市（城区人口≥500万）",
+      "tier2": "大城市（100万~500万）",
+      "tier3": "中等城市和小城市（<100万）"
+    }
+  },
+  "cities": {
+    "zhengzhou": {
+      "name": "郑州", "lat": 34.7167, "lon": 113.65, "tier": "tier1",
+      "anchor": {
+        "value_mm": 201.9, "window_h": 1,
+        "event_lat": 34.7167, "event_lon": 113.66, "event_date": "2021-07-20",
+        "when": "2021-07-20 16-17时（郑州国家气象站）",
+        "label": "郑州「7·20」特大暴雨，破我国大陆气象观测小时雨强历史极值",
+        "source": "国务院灾害调查组《河南郑州7·20特大暴雨灾害调查报告》(2022-01)"
+      }
+    },
+    "beijing": {
+      "name": "北京", "lat": 39.9042, "lon": 116.4074, "tier": "tier1",
+      "anchor": {
+        "value_mm": 100.3, "window_h": 1,
+        "event_lat": 40.1833, "event_lon": 117.2167, "event_date": "2012-07-21",
+        "when": "2012-07-21 21时（平谷挂甲峪）",
+        "label": "北京「7·21」特大暴雨最大小时雨强",
+        "source": "中国气象局《专家解析北京7·21特大暴雨》(2012-07-24)"
+      }
+    },
+    "shenzhen": {
+      "name": "深圳", "lat": 22.5431, "lon": 114.0579, "tier": "tier1",
+      "anchor": {
+        "value_mm": 195.8, "window_h": 2,
+        "event_lat": 22.55, "event_lon": 114.10, "event_date": "2023-09-07",
+        "when": "2023-09-07 夜（9·7极端特大暴雨）",
+        "label": "深圳「9·7」最大2小时雨量，破1952年建站七项历史极值之一",
+        "source": "深圳市气象局通报 / 新华社(2023-09-08)"
+      }
+    },
+    "shanghai": {"name": "上海", "lat": 31.2304, "lon": 121.4737, "tier": "tier1"},
+    "guangzhou": {"name": "广州", "lat": 23.1291, "lon": 113.2644, "tier": "tier1"},
+    "chongqing": {"name": "重庆", "lat": 29.5630, "lon": 106.5516, "tier": "tier1"},
+    "chengdu": {"name": "成都", "lat": 30.5728, "lon": 104.0668, "tier": "tier1"},
+    "wuhan": {"name": "武汉", "lat": 30.5928, "lon": 114.3055, "tier": "tier1"},
+    "tianjin": {"name": "天津", "lat": 39.3434, "lon": 117.3616, "tier": "tier1"},
+    "xian": {"name": "西安", "lat": 34.3416, "lon": 108.9398, "tier": "tier1"},
+    "hangzhou": {"name": "杭州", "lat": 30.2741, "lon": 120.1551, "tier": "tier1"},
+    "nanjing": {"name": "南京", "lat": 32.0603, "lon": 118.7969, "tier": "tier1"},
+    "changsha": {"name": "长沙", "lat": 28.2282, "lon": 112.9388, "tier": "tier2"},
+    "jinan": {"name": "济南", "lat": 36.6512, "lon": 117.1201, "tier": "tier2"},
+    "hefei": {"name": "合肥", "lat": 31.8206, "lon": 117.2290, "tier": "tier2"},
+    "fuzhou": {"name": "福州", "lat": 26.0745, "lon": 119.2965, "tier": "tier2"},
+    "nanning": {"name": "南宁", "lat": 22.8170, "lon": 108.3665, "tier": "tier2"},
+    "kunming": {"name": "昆明", "lat": 25.0389, "lon": 102.7183, "tier": "tier2"},
+    "guiyang": {"name": "贵阳", "lat": 26.6470, "lon": 106.6302, "tier": "tier2"}
+  },
+  "drainage_gb50014": {
+    "_source": "GB 50014-2021《室外排水设计标准》表4.1.3 雨水管渠设计重现期(年) 与 内涝防治设计重现期",
+    "pipe_recurrence_years": {
+      "tier1": {"central": [3, 5], "non_central": [2, 3], "key_area": [5, 10], "underpass_plaza": [30, 50]},
+      "tier2": {"central": [2, 5], "non_central": [2, 3], "key_area": [5, 10], "underpass_plaza": [20, 30]},
+      "tier3": {"central": [2, 3], "non_central": [2, 3], "key_area": [3, 5], "underpass_plaza": [10, 20]}
+    },
+    "waterlogging_recurrence_years": {
+      "tier1": [100, 100], "tier2": [50, 100], "tier3": [20, 30]
+    }
+  },
+  "rain_warning_gb": {
+    "_source": "中国气象局《气象灾害预警信号发布与传播办法》暴雨预警信号（全国通用口径）",
+    "levels": [
+      {"code": "blue",   "name": "暴雨蓝色", "window_h": 12, "threshold_mm": 50},
+      {"code": "yellow", "name": "暴雨黄色", "window_h": 6,  "threshold_mm": 50},
+      {"code": "orange", "name": "暴雨橙色", "window_h": 3,  "threshold_mm": 50},
+      {"code": "red",    "name": "暴雨红色", "window_h": 3,  "threshold_mm": 100}
+    ]
+  }
+}
